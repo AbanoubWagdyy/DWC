@@ -2,7 +2,8 @@
 
 <resources>
 
-    <string name="remoteAccessConsumerKey">3MVG9sLbBxQYwWqsa8dlM02Kaxs1PH5oIbF_o2Y4FfeOoF.1__CEjo_6_fIBta82uOIvzvuJ9tVtR1iU9PbtA</string>
+<!--    <string name="remoteAccessConsumerKey">3MVG9sLbBxQYwWqsa8dlM02Kaxs1PH5oIbF_o2Y4FfeOoF.1__CEjo_6_fIBta82uOIvzvuJ9tVtR1iU9PbtA</string>-->
+    <string name="remoteAccessConsumerKey">3MVG9rKhT8ocoxGluZsmN6lz4rniL2LuD2wgcpfgxFremZ0FIHii8X4JiVwzHkchlSIb4MHiKi4GhGvWFW57g</string>
     <string name="oauthRedirectURI">dwcmobile://auth/success</string>
     <string-array name="oauthScopes">
         <item>api</item>

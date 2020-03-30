@@ -2,9 +2,9 @@
 <servers>
     <server
         name="Production"
-        url="https://dwc.force.com/portal" />
+        url="https://qa-dwc.cs80.force.com/mobileds" />
 
     <server
         name="Sandbox"
-        url="https://qa-dwc.cs84.force.com/portal" />
+        url="https://qa-dwc.cs80.force.com/mobileds" />
 </servers>

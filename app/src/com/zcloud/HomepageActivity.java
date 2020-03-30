@@ -369,6 +369,7 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -523,22 +524,17 @@ public class HomepageActivity extends Activity implements
 
     @Override
     public void onResume() {
-        if (new StoreData(getApplicationContext()).getFirstTimeLogin() == true) {
+        if (new StoreData(getApplicationContext()).getFirstTimeLogin()) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    new ClientManager(HomepageActivity.this, SalesforceSDKManager.getInstance().getAccountType(), SalesforceSDKManager.getInstance().getLoginOptions(), SalesforceSDKManager.getInstance().shouldLogoutWhenTokenRevoked()).getRestClient(HomepageActivity.this, new ClientManager.RestClientCallback() {
+                    runOnUiThread(new Runnable() {
                         @Override
-                        public void authenticatedRestClient(RestClient client) {
-                            if (client == null) {
-                                SalesforceSDKManager.getInstance().logout(HomepageActivity.this);
-                                return;
-                            } else {
-                                new StoreData(getApplicationContext()).setFirstTimeLogin(false);
-                                setContentView(R.layout.homepage);
-                                new StoreData(getApplicationContext()).saveUserID(SalesforceSDKManager.getInstance().getUserAccountManager().getCurrentUser().getUserId());
-                                InitializeViews();
-                            }
+                        public void run() {
+                            new StoreData(getApplicationContext()).setFirstTimeLogin(false);
+                            setContentView(R.layout.homepage);
+                            new StoreData(getApplicationContext()).saveUserID(SalesforceSDKManager.getInstance().getUserAccountManager().getCurrentUser().getUserId());
+                            InitializeViews();
                         }
                     });
                 }
