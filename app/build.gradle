@@ -15,6 +15,12 @@ android {
         }
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        xmlReport true
+        abortOnError false
+    }
+
     dependencies {
         implementation 'com.android.support:appcompat-v7:29.0.3'
         implementation 'androidx.cardview:cardview:1.0.0'
