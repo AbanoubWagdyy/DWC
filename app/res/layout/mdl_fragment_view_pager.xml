@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
-    <com.viewpagerindicator.CirclePageIndicator
+    <utilities.CirclePageIndicator
         android:id="@+id/viewpagerindicator"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -29,7 +29,6 @@
         app:pageColor="@android:color/white"
         app:snap="false"
         app:strokeColor="?attr/colorPrimaryDark" />
-
 
     <custom.CustomViewPager
         android:id="@+id/viewpager"

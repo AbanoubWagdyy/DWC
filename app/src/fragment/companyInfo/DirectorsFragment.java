@@ -113,38 +113,43 @@ public class DirectorsFragment extends Fragment {
                             client.sendAsync(restRequest, new RestClient.AsyncRequestCallback() {
 
                                 @Override
-                                public void onSuccess(RestRequest request, RestResponse response) {
+                                public void onSuccess(RestRequest request, final RestResponse response) {
 
-                                    if (serviceCall == CallType.LOADMORE || serviceCall == CallType.REFRESH)
-                                        swipyRefreshLayout.setRefreshing(false);
-                                    if (serviceCall == CallType.LOADMORE) {
-                                        ArrayList<Directorship> directorships1 = SFResponseManager.parseDirectionshipObject(response.toString());
-                                        if (directorships1.size() > 0) {
-                                            new StoreData(getActivity().getApplicationContext()).setDirectorsResponse(response.toString());
-                                            for (int i = 0; i < directorships1.size(); i++) {
-                                                boolean found = false;
-                                                for (int j = 0; j < directorships.size(); j++) {
-                                                    if (directorships1.get(i).getID().equals(directorships.get(j).getID())) {
-                                                        found = true;
-                                                        break;
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (serviceCall == CallType.LOADMORE || serviceCall == CallType.REFRESH)
+                                                swipyRefreshLayout.setRefreshing(false);
+                                            if (serviceCall == CallType.LOADMORE) {
+                                                ArrayList<Directorship> directorships1 = SFResponseManager.parseDirectionshipObject(response.toString());
+                                                if (directorships1.size() > 0) {
+                                                    new StoreData(getActivity().getApplicationContext()).setDirectorsResponse(response.toString());
+                                                    for (int i = 0; i < directorships1.size(); i++) {
+                                                        boolean found = false;
+                                                        for (int j = 0; j < directorships.size(); j++) {
+                                                            if (directorships1.get(i).getID().equals(directorships.get(j).getID())) {
+                                                                found = true;
+                                                                break;
+                                                            }
+                                                        }
+                                                        if (!found) {
+                                                            directorships.add(directorships1.get(i));
+                                                        }
                                                     }
+                                                    lvDirectors.setAdapter(new GenericAdapter(getActivity(), directorships, AdapterConfiguration.DIRECTORS_TAG));
+                                                    restoreListPosition();
                                                 }
-                                                if (!found) {
-                                                    directorships.add(directorships1.get(i));
+                                            } else {
+                                                directorships = new ArrayList<Directorship>();
+                                                directorships = SFResponseManager.parseDirectionshipObject(response.toString());
+                                                if (directorships.size() > 0) {
+                                                    new StoreData(getActivity().getApplicationContext()).setDirectorsResponse(response.toString());
+                                                    lvDirectors.setAdapter(new GenericAdapter(getActivity(), directorships, AdapterConfiguration.DIRECTORS_TAG));
+                                                    restoreListPosition();
                                                 }
                                             }
-                                            lvDirectors.setAdapter(new GenericAdapter(getActivity(), directorships, AdapterConfiguration.DIRECTORS_TAG));
-                                            restoreListPosition();
                                         }
-                                    } else {
-                                        directorships = new ArrayList<Directorship>();
-                                        directorships = SFResponseManager.parseDirectionshipObject(response.toString());
-                                        if (directorships.size() > 0) {
-                                            new StoreData(getActivity().getApplicationContext()).setDirectorsResponse(response.toString());
-                                            lvDirectors.setAdapter(new GenericAdapter(getActivity(), directorships, AdapterConfiguration.DIRECTORS_TAG));
-                                            restoreListPosition();
-                                        }
-                                    }
+                                    });
                                 }
 
                                 @Override

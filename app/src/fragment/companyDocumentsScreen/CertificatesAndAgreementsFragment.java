@@ -1,7 +1,9 @@
 package fragment.companyDocumentsScreen;
 
 import android.os.Bundle;
+
 import com.zcloud.R;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,9 @@ import java.util.ArrayList;
 import RestAPI.SFResponseManager;
 import RestAPI.SoqlStatements;
 import adapter.CertificatesAdapter;
+
 import com.zcloud.R;
+
 import custom.ExpandableLayoutListView;
 import utilities.StoreData;
 import model.EServices_Document_Checklist__c;
@@ -78,8 +82,8 @@ public class CertificatesAndAgreementsFragment extends Fragment {
                 if (direction == SwipyRefreshLayoutDirection.TOP) {
                     offset = 0;
                     adapter = null;
-                    index=0;
-                    top=0;
+                    index = 0;
+                    top = 0;
                     getListPosition();
                     eServiceDocumentChecklists.clear();
                     CallTrueCopiesService(CallType.REFRESH, offset, limit);
@@ -136,30 +140,35 @@ public class CertificatesAndAgreementsFragment extends Fragment {
                         client.sendAsync(restRequest, new RestClient.AsyncRequestCallback() {
                             @Override
                             public void onSuccess(RestRequest request, final RestResponse response) {
-                                try {
-                                    eServices_document_checklist__cs = (ArrayList<EServices_Document_Checklist__c>) SFResponseManager.parseEServiceDocumentChecklist2(response.toString());
-                                    if (eServices_document_checklist__cs.size() > 0) {
-                                        Gson gson = new Gson();
-                                        String str = gson.toJson(eServices_document_checklist__cs);
-                                        new StoreData(getActivity().getApplicationContext()).saveCertificatesAgreementsResponse(str);
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            eServices_document_checklist__cs = (ArrayList<EServices_Document_Checklist__c>) SFResponseManager.parseEServiceDocumentChecklist2(response.toString());
+                                            if (eServices_document_checklist__cs.size() > 0) {
+                                                Gson gson = new Gson();
+                                                String str = gson.toJson(eServices_document_checklist__cs);
+                                                new StoreData(getActivity().getApplicationContext()).saveCertificatesAgreementsResponse(str);
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        if (method == CallType.LOADMORE || method == CallType.REFRESH) {
+                                            mSwipeRefreshLayout.setRefreshing(false);
+                                        }
+                                        if (adapter == null) {
+                                            eServiceDocumentChecklists.addAll(eServices_document_checklist__cs);
+                                            adapter = new CertificatesAdapter(getActivity(), getActivity().getApplicationContext(),
+                                                    R.layout.true_copies_item_row, eServiceDocumentChecklists);
+                                            lstTrueCopies.setAdapter(adapter);
+                                            restoreListPosition();
+                                        } else {
+                                            adapter.addAll(eServices_document_checklist__cs);
+                                        }
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                if (method == CallType.LOADMORE || method == CallType.REFRESH) {
-                                    mSwipeRefreshLayout.setRefreshing(false);
-                                }
-                                if (adapter == null) {
-                                    eServiceDocumentChecklists.addAll(eServices_document_checklist__cs);
-                                    adapter = new CertificatesAdapter(getActivity(), getActivity().getApplicationContext(),
-                                            R.layout.true_copies_item_row, eServiceDocumentChecklists);
-                                    lstTrueCopies.setAdapter(adapter);
-                                    restoreListPosition();
-                                } else {
-                                    adapter.addAll(eServices_document_checklist__cs);
-                                }
+                                });
                             }
 
                             @Override

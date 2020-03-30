@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+import utilities.CirclePageIndicator;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ import com.zcloud.R;
 import com.blunderer.materialdesignlibrary.adapters.ViewPagerAdapter;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
 import com.blunderer.materialdesignlibrary.models.ViewPagerItem;
-import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.List;
 

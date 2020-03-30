@@ -254,8 +254,14 @@ public class Utilities {
      * @param message:the   message to be shown within toast
      *                      Show short message indicating what message want to be displayed to user
      */
-    public static void showToast(Activity act, String message) {
-        Toast.makeText(act, message, Toast.LENGTH_SHORT).show();
+    public static void showToast(final Activity act, final String message) {
+        act.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(act, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     /**
@@ -263,8 +269,14 @@ public class Utilities {
      * @param message:the   message to be shown within toast
      *                      Show long message indicating what message want to be displayed to user
      */
-    public static void showLongToast(Activity act, String message) {
-        Toast.makeText(act, message, Toast.LENGTH_LONG).show();
+    public static void showLongToast(final Activity act, final String message) {
+        act.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(act, message, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     /**
@@ -274,29 +286,29 @@ public class Utilities {
      *                                Check if file is already downloaded ,get from external storage and set to bitmap .If not exists and attachment id not null ,download attachment using  DownloadAttachment method.
      */
     public static synchronized void setUserPhoto(Activity act, final String attachmentId, final DWCRoundedImageView smartImageView) {
-        boolean isFound = false;
-        String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-        File folder = new File(extStorageDirectory, "attachment-export");
-        if (folder.exists()) {
-            ArrayList<String> files = getListOfAttachments();
-            for (int i = 0; i < files.size(); i++) {
-                if (files.get(i).equals(attachmentId)) {
-                    isFound = true;
-                    break;
-                }
-            }
-            if (isFound) {
-                String path = Environment.getExternalStorageDirectory() + "/attachment-export/" + attachmentId;
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-                smartImageView.setImageBitmap(bitmap);
-            } else {
-                DownloadAttachment(act, attachmentId, smartImageView);
-            }
-        } else {
-            DownloadAttachment(act, attachmentId, smartImageView);
-        }
+//        boolean isFound = false;
+//        String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+//        File folder = new File(extStorageDirectory, "attachment-export");
+//        if (folder.exists()) {
+//            ArrayList<String> files = getListOfAttachments();
+//            for (int i = 0; i < files.size(); i++) {
+//                if (files.get(i).equals(attachmentId)) {
+//                    isFound = true;
+//                    break;
+//                }
+//            }
+//            if (isFound) {
+//                String path = Environment.getExternalStorageDirectory() + "/attachment-export/" + attachmentId;
+//                BitmapFactory.Options options = new BitmapFactory.Options();
+//                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//                Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+//                smartImageView.setImageBitmap(bitmap);
+//            } else {
+//                DownloadAttachment(act, attachmentId, smartImageView);
+//            }
+//        } else {
+//            DownloadAttachment(act, attachmentId, smartImageView);
+//        }
     }
 
     /**
@@ -379,22 +391,22 @@ public class Utilities {
                             client.sendAsync(restRequest, new RestClient.AsyncRequestCallback() {
                                 @Override
                                 public void onSuccess(RestRequest request, RestResponse response) {
-                                    try {
-                                        final JSONObject json = new JSONObject(response.toString());
-                                        final Attachment attachment = new Attachment();
-                                        attachment.setID(json.getString("Id"));
-                                        attachment.setBody(json.getString("Body"));
-                                        try {
-                                            new DownloadAttachmentBody(client, attachment, smartImageView).execute().get();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        } catch (ExecutionException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
+//                                    try {
+//                                        final JSONObject json = new JSONObject(response.toString());
+//                                        final Attachment attachment = new Attachment();
+//                                        attachment.setID(json.getString("Id"));
+//                                        attachment.setBody(json.getString("Body"));
+//                                        try {
+//                                            new DownloadAttachmentBody(client, attachment, smartImageView).execute().get();
+//                                        } catch (InterruptedException e) {
+//                                            e.printStackTrace();
+//                                        } catch (ExecutionException e) {
+//                                            e.printStackTrace();
+//                                        }
+//
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
                                 }
 
                                 @Override
