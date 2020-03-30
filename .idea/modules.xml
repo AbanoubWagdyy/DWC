@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DWC.iml" filepath="$PROJECT_DIR$/DWC.iml" group="DWC" />
+      <module fileurl="file://$PROJECT_DIR$/SalesforceAnalytics/DWC-SalesforceAnalytics.iml" filepath="$PROJECT_DIR$/SalesforceAnalytics/DWC-SalesforceAnalytics.iml" group="DWC/SalesforceAnalytics" />
+      <module fileurl="file://$PROJECT_DIR$/SalesforceSDK/DWC-SalesforceSDK.iml" filepath="$PROJECT_DIR$/SalesforceSDK/DWC-SalesforceSDK.iml" group="DWC/SalesforceSDK" />
+      <module fileurl="file://$PROJECT_DIR$/SmartStore/DWC-SmartStore.iml" filepath="$PROJECT_DIR$/SmartStore/DWC-SmartStore.iml" group="DWC/SmartStore" />
+      <module fileurl="file://$PROJECT_DIR$/SmartSync/DWC-SmartSync.iml" filepath="$PROJECT_DIR$/SmartSync/DWC-SmartSync.iml" group="DWC/SmartSync" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceAnalytics/SalesforceAnalytics.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceAnalytics/SalesforceAnalytics.iml" group="DWC/libs/SalesforceAnalytics" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceSDK/SalesforceSDK.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceSDK/SalesforceSDK.iml" group="DWC/libs/SalesforceSDK" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartStore/SmartStore.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartStore/SmartStore.iml" group="DWC/libs/SmartStore" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartSync/SmartSync.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartSync/SmartSync.iml" group="DWC/libs/SmartSync" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="DWC/app" />
+      <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" group="DWC/libs" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceAnalytics/libs-SalesforceAnalytics.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceAnalytics/libs-SalesforceAnalytics.iml" group="DWC/libs/SalesforceAnalytics" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceSDK/libs-SalesforceSDK.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SalesforceSDK/libs-SalesforceSDK.iml" group="DWC/libs/SalesforceSDK" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartStore/libs-SmartStore.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartStore/libs-SmartStore.iml" group="DWC/libs/SmartStore" />
+      <module fileurl="file://$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartSync/libs-SmartSync.iml" filepath="$PROJECT_DIR$/mobile_sdk/SalesforceMobileSDK-Android/libs/SmartSync/libs-SmartSync.iml" group="DWC/libs/SmartSync" />
+    </modules>
+  </component>
+</project>
